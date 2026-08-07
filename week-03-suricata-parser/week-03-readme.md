@@ -53,8 +53,8 @@ Install and configure Suricata IDS on the Ubuntu Server VM, bind it to the bridg
 ---
 
 ## Screenshots
-![week-03-ss-1](./docs/images/w3-1.png)
-![week-03-ss-2](./docs/images/w3-2.png)
+![week-03-ss-1](../docs/images/w3-1.png)
+![week-03-ss-2](../docs/images/w3-2.png)
 
 ---
 
