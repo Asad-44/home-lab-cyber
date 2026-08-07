@@ -43,6 +43,10 @@ Simulate network reconnaissance and automated brute-force attacks from the attac
    ```
 
 ---
+## Screenshots
+
+![week2 ss-1](../docs/images/w2-2.png)
+![week2 ss-2](../docs/images/w2-22/png)
 
 ## Milestone
-✅ Hydra brute-force attack launched from Kali; corresponding "Failed password" entries observed flooding `auth.log` in real time on the Ubuntu Server VM; Hydra successfully identifies the correct credential.
+Hydra brute-force attack launched from Kali; corresponding "Failed password" entries observed flooding `auth.log` in real time on the Ubuntu Server VM; Hydra successfully identifies the correct credential.
