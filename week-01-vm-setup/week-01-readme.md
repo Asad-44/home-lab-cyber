@@ -4,6 +4,8 @@
 Set up a headless virtualization environment, deploy two Linux VMs, configure network connectivity across the home network, and control the lab remotely from a primary laptop.
 
 ---
+## Setup Diagram
+![Lab Setup Diagram](./docs/images/lab-setup-summer26.png)
 
 ## Environment
 
