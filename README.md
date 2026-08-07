@@ -13,7 +13,7 @@ This repository documents my hands-on progress building an active-defense securi
 | **Attacker VM** | Kali Linux | `192.168.x.x` |
 | **Target VM** | Ubuntu Server running Suricata IDS | `192.168.x.x` |
 
-**Network Mode:** Host-Only (Isolated from the home network)
+**Network Mode:** Bridged Adapter (Connected to local home subnet)
 
 ---
 
