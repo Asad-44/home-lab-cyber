@@ -9,7 +9,7 @@ Set up a headless virtualization environment, deploy two Linux VMs, configure ne
 
 | Component | Detail |
 |---|---|
-| **Lab Server** | Spare laptop (Linux Mint), 320 GB HDD |
+| **Lab Server** | Spare laptop (Linux Mint) |
 | **Hypervisor** | VirtualBox |
 | **Attacker VM** | Kali Linux |
 | **Target VM** | Ubuntu Server (headless) |
