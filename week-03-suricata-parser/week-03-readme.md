@@ -52,5 +52,11 @@ Install and configure Suricata IDS on the Ubuntu Server VM, bind it to the bridg
 
 ---
 
+## Screenshots
+![week-03-ss-1](./docs/images/w3-1.png)
+![week-03-ss-2](./docs/images/w3-2.png)
+
+---
+
 ## Milestone
-✅ Suricata installed, configured with correct `HOME_NET` and interface bindings, running as an active service and processing live traffic on the bridged network.
+Suricata installed, configured with correct `HOME_NET` and interface bindings, running as an active service and processing live traffic on the bridged network.
