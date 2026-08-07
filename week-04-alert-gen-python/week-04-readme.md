@@ -40,16 +40,21 @@ Trigger Suricata alerts via live attacks, confirm structured JSON logging (`eve.
 
 ---
 
-## Screenshots
+##Milestone
+
+Successful Attack Detection & Log Parsing
+Running alert_monitor.py on the Ubuntu Server VM while launching scans and brute-force attacks from the Kali Linux VM produces real-time, parsed alerts.
+
+Phase 1: Reconnaissance Detection (Nmap Scan)
+
+When an nmap -A scan is executed from the attacker VM, the parser immediately extracts and displays the network scanning and ICMP probe attempts:
 
 ![w4-ss-1](../docs/images/w4-1.png)
 
+Phase 2: Brute-Force Detection (Hydra Attack)
+
+When the automated Hydra brute-force attack is executed against SSH, the attacker VM successfully finds the valid credential while the target VM flags multiple anomalous SSH connection attempts in real-time:
+
 ![w4-ss-2](../docs/images/w4-2.png)
 
----
-
-## Milestone
-Running `alert_monitor.py` on the Ubuntu Server while a Hydra attack executes from Kali produces real-time, human-readable alerts, e.g.:
-```
-[2026-03-30T14:32:10] ALERT: SSH brute force attack detected from 192.168.1.15
-```
+Result: The custom Python parser successfully processes raw Suricata JSON events into a readable alert feed, validating the end-to-end detection pipeline.
