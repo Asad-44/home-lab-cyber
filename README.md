@@ -6,7 +6,7 @@ This repository documents my hands-on progress building an active-defense securi
 
 ## Lab Architecture
 
-*Include a simple diagram or text representation of your VMs*
+![Lab Setup Diagram](./docs/images/lab-setup-summer26.png)
 
 | Role | OS | IP Address |
 |------|----|------------|
