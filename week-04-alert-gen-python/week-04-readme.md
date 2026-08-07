@@ -40,8 +40,16 @@ Trigger Suricata alerts via live attacks, confirm structured JSON logging (`eve.
 
 ---
 
+## Screenshots
+
+![w4-ss-1](./docs/images/w4-1.png)
+
+![w4-ss-2](./docs/images/w4-2.png)
+
+---
+
 ## Milestone
-✅ Running `alert_monitor.py` on the Ubuntu Server while a Hydra attack executes from Kali produces real-time, human-readable alerts, e.g.:
+Running `alert_monitor.py` on the Ubuntu Server while a Hydra attack executes from Kali produces real-time, human-readable alerts, e.g.:
 ```
 [2026-03-30T14:32:10] ALERT: SSH brute force attack detected from 192.168.1.15
 ```
