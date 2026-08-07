@@ -40,7 +40,7 @@ Trigger Suricata alerts via live attacks, confirm structured JSON logging (`eve.
 
 ---
 
-##Milestone
+## Milestone
 
 Successful Attack Detection & Log Parsing
 Running alert_monitor.py on the Ubuntu Server VM while launching scans and brute-force attacks from the Kali Linux VM produces real-time, parsed alerts.
