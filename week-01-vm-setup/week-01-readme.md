@@ -49,4 +49,4 @@ Set up a headless virtualization environment, deploy two Linux VMs, configure ne
 ---
 
 ## Milestone
-✅ From the primary laptop, SSH into the Kali VM, then SSH into the Ubuntu Server VM using key-based authentication — no password prompt.
+From the primary laptop, SSH into the Kali VM, then SSH into the Ubuntu Server VM using key-based authentication — no password prompt.
