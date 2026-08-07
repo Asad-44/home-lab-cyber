@@ -5,6 +5,9 @@ Set up a headless virtualization environment, deploy two Linux VMs, configure ne
 
 ---
 
+## Lab setup diagram
+![Lab Setup Diagram](./docs/images/lab-setup.png)
+
 ## Environment
 
 | Component | Detail |
