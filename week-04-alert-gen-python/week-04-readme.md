@@ -42,9 +42,9 @@ Trigger Suricata alerts via live attacks, confirm structured JSON logging (`eve.
 
 ## Screenshots
 
-![w4-ss-1](./docs/images/w4-1.png)
+![w4-ss-1](../docs/images/w4-1.png)
 
-![w4-ss-2](./docs/images/w4-2.png)
+![w4-ss-2](../docs/images/w4-2.png)
 
 ---
 
