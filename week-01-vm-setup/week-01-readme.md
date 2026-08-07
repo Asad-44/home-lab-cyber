@@ -4,15 +4,18 @@
 Set up a headless virtualization environment, deploy two Linux VMs, configure network connectivity across the home network, and control the lab remotely from a primary laptop.
 
 ---
+<<<<<<< HEAD
 
 ## Lab setup diagram
 ![Lab Setup Diagram](./docs/images/lab-setup.png)
 
+=======
+>>>>>>> 341f9047925f3bbfd5377a55476f1582f459a957
 ## Environment
 
 | Component | Detail |
 |---|---|
-| **Lab Server** | Spare laptop (Linux Mint), 320 GB HDD |
+| **Lab Server** | Spare laptop (Linux Mint) |
 | **Hypervisor** | VirtualBox |
 | **Attacker VM** | Kali Linux |
 | **Target VM** | Ubuntu Server (headless) |
