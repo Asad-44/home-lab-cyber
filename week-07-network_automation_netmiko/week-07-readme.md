@@ -38,5 +38,9 @@ Programmatically connect to a remote Linux host via SSH using Netmiko, execute a
 
 ---
 
+## Screenshots
+![week7-image-netmiko](./images/w7.png)
+
+---
 ## Milestone
 ✅ Script executed from WSL establishes an SSH connection to the Ubuntu Server VM over the home network and returns the live `iptables` rule table to the local terminal.
