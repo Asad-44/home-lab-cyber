@@ -39,7 +39,7 @@ Programmatically connect to a remote Linux host via SSH using Netmiko, execute a
 ---
 
 ## Screenshots
-![week7-image-netmiko](./images/w7.png)
+![week7-image-netmiko](../docs/images/w7.png)
 
 ---
 ## Milestone
