@@ -29,8 +29,8 @@ This repository documents my hands-on progress building an active-defense securi
 
 ## Lab Milestones
 
-- [x] [Weeks 1–2: Virtual Network & Attack Simulation](./week-01-02-vm-setup/)
-- [x] [Weeks 3–4: Suricata IDS & JSON Parsing](./week-03-04-suricata-parser/)
-- [x] [Weeks 5–6: FastAPI & Threat Intel API Integration](./week-05-06-api-threat-intel/) 
-- [x] Weeks 7–8: SSH Automation & Active Defense 
+- [x] [Weeks 1–2: Virtual Network & Attack Simulation](./week-02-attacksimulation/)
+- [x] [Weeks 3–4: Suricata IDS & JSON Parsing](./week-04-alert-gen-python/)
+- [x] [Weeks 5–6: FastAPI & Threat Intel API Integration](./week-06-api-threat-intel/) 
+- [x] [Weeks 7–8: SSH Automation & Active Defense](./week-08-active_defender_api)
 - [ ] Weeks 9–12: AI MITRE Mapping & Streamlit Dashboard*(In Progress)*
