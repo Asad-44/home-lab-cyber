@@ -42,10 +42,6 @@ Integrate a generative AI model (Google Gemini) to automate security threat tria
 ---
 
 ## Milestone
-✅ Submitted a live threat scenario (anomalous connection spike on a database server) and received a structured, schema-validated response:
-```
-Severity level: Critical
-Action plan   : Restrict direct external access via firewall rules, implement
-                rate limiting and automated IP blocking, and enforce access
-                through a VPN or bastion host.
-```
+Submitted a live threat scenario (anomalous connection spike on a database server) and received a structured, schema-validated response:
+
+![w9 ss](../docs/images/w9.png)
