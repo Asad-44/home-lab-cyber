@@ -81,8 +81,28 @@ FastAPI now rejects any non-IP input at the validation layer (`422 Unprocessable
 
 ---
 
+## Screenshots
+
+### 1. Automated Remediation Workflow Execution (HTTP 200)
+![Automated Remediation](../docs/images/w8-fapi.png)
+The successful execution of the core workflow. An IP address associated with known malicious activity (`185.220.101.5`) is analyzed via the AbuseIPDB threat intelligence API, registers a high abuse confidence score (100%), and triggers the automated remote SSH Netmiko script to apply the firewall rule to the target VM.
+
+### 2. Redundant Rule Detection & Prevention (HTTP 200)
+![Duplicate Rule Prevention](../docs/images/w8-duplication.png)
+To prevent rule-table bloat on the target firewall, the script queries iptables using check flags (`-C`) before appending a new rule. When the same malicious IP is submitted a second time, the API recognizes that the block rule is already active and safely skips duplication.
+
+### 3. Input Sanitization & Command Injection Prevention (HTTP 422)
+![Input Sanitization](../docs/images/w8-cmd_injection_rejection.png)
+Demonstrating robust backend input validation using Pydantic's IPvAnyAddress type. When a malformed payload containing a command injection attempt (`192.168.100.41; rm -rf /`) is submitted, the API immediately intercepts and rejects the request at the web application layer before constructing any shell commands.
+
+
+### 4. Active Firewall Verification (Target VM)
+![Firewall Verification](../docs/images/w8-ubuntu-iptables.png)
+Verifying the results on the target Ubuntu Server VM by executing `sudo iptables -L -n -v`. The output confirms that the malicious IP address (`185.220.101.5`) has been successfully added to the active INPUT chain with the target set to DROP.
+
+---
 ## Milestone
-✅ `POST /remediate` with a known-malicious IP (e.g. a TOR exit node) returns a full threat report and — for scores ≥ 50% — automatically connects to the Ubuntu Server VM and applies an `iptables DROP` rule, confirmed via:
+`POST /remediate` with a known-malicious IP (e.g. a TOR exit node) returns a full threat report and — for scores ≥ 50% — automatically connects to the Ubuntu Server VM and applies an `iptables DROP` rule, confirmed via:
 ```bash
 sudo iptables -L -n -v
 ```
