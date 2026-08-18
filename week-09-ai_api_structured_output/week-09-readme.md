@@ -45,3 +45,5 @@ Integrate a generative AI model (Google Gemini) to automate security threat tria
 Submitted a live threat scenario (anomalous connection spike on a database server) and received a structured, schema-validated response:
 
 ![w9 ss](../docs/images/w9.png)
+
+This lays the groundwork for automated MITRE ATT&CK-mapped alert triage in Week 10–11, replacing the hardcoded prompt with live Suricata alert data.
