@@ -37,8 +37,26 @@ Build an interactive web dashboard in pure Python using Streamlit, and connect i
 
 ---
 
+## Screenshots
+
+![week11-ui-ss](../docs/images/w11-ui.png)
+
+* **Description:** The interactive frontend dashboard built with Streamlit. It allows security operators to input a target IP (e.g., `185.220.101.5`) and execute real-time threat remediation. 
+* **Key Details Shown:**
+  * **Real-time Threat Intel:** Retrieves a 100% Abuse Confidence Score from AbuseIPDB, alongside geo-location metadata.
+  * **Rule Deduplication:** Demonstrates the defensive `iptables` validation check in action, safely outputting `"Rule already exists. Skipping duplication."` to prevent table bloat on the remote target VM.
+
+![week11-uvicorn-ss](../docs/images/w11-uvicorn.png)
+
+* **Description:** Live terminal logs of the FastAPI backend server (`uvicorn`) running inside WSL on the primary laptop, capturing the end-to-end programmatic workflow.
+* **Key Details Shown:**
+  * **Endpoint Traffic:** Displays standard incoming health checks (`GET /` returning `200 OK`).
+  * **Error & Triage Handling:** Logs a handled backend exception (`POST /remediate` returning `502 Bad Gateway`) due to an initial SSH private key path mismatch.
+  * **Successful Remediation:** Shows the successful connection, passwordless privilege escalation, and firewall rule deployment (`POST /remediate` returning `200 OK`) after implementing the secure fallback logic.
+ 
+---
 ## Milestone
-✅ Streamlit dashboard runs in WSL and renders in the Windows browser at `http://localhost:8501`, successfully fetching live data from the FastAPI backend. Submitting an IP through the dashboard triggers the `/remediate` workflow on the backend in real time.
+Streamlit dashboard runs in WSL and renders in the Windows browser at `http://localhost:8501`, successfully fetching live data from the FastAPI backend. Submitting an IP through the dashboard triggers the `/remediate` workflow on the backend in real time.
 
 ---
 
