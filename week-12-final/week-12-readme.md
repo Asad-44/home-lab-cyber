@@ -30,6 +30,14 @@ Twelve weeks of logic, previously scattered across standalone test scripts, cons
 
 ---
 
+### System Architecture & Orchestration Pipeline
+
+![SOAR Pipeline Architecture](../docs/images/w12-workflow.png)
+
+*Figure: Complete 8-step data flow across physical and virtual zones—from raw alert ingestion in the Streamlit UI, through API enrichment and AI threat mapping, to remote firewall enforcement via Netmiko SSH.*
+
+---
+
 ## Key Implementation
 
 **New capability — raw alert parsing.** Unlike previous weeks (which took a pre-extracted IP as input), the orchestrator now accepts a raw, unparsed Suricata alert string and extracts the attacker's IP itself:
