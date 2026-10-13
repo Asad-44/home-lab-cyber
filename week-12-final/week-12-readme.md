@@ -22,6 +22,7 @@ Consolidate twelve weeks of modular engineering into a cohesive, closed-loop **S
 
 The platform uses single-responsibility modules to isolate network operations, API queries, and AI processing:
 
+<<<<<<< HEAD
 ```text
 [Attacker: Kali VM]
         │  attack traffic
@@ -49,6 +50,35 @@ The platform uses single-responsibility modules to isolate network operations, A
                        │
                        ▼
           [Sensor: Ubuntu VM · kernel firewall]
+=======
+| File | Responsibility |
+|---|---|
+| `threat_check.py` | AbuseIPDB reputation lookup — isolated, reusable function |
+| `firewall_test.py` | Netmiko SSH automation — duplicate-checked `iptables` blocking |
+| `ai_analyst.py` | Gemini AI threat classification — structured MITRE ATT&CK mapping |
+| `main.py` | FastAPI orchestrator — imports all modules, exposes two endpoints |
+| `app.py` | Streamlit dashboard — the analyst-facing control surface |
+
+---
+
+### System Architecture & Orchestration Pipeline
+
+![SOAR Pipeline Architecture](../docs/images/w12-workflow.png)
+
+*Figure: Complete 8-step data flow across physical and virtual zones—from raw alert ingestion in the Streamlit UI, through API enrichment and AI threat mapping, to remote firewall enforcement via Netmiko SSH.*
+
+---
+
+## Key Implementation
+
+**New capability — raw alert parsing.** Unlike previous weeks (which took a pre-extracted IP as input), the orchestrator now accepts a raw, unparsed Suricata alert string and extracts the attacker's IP itself:
+```python
+def extract_ip_from_text(text: str) -> str:
+    ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
+    ips = re.findall(ip_pattern, text)
+    ...
+    # filters out the target's own IP, localhost, and broadcast addresses
+>>>>>>> 16a764aae3923c6e1d0580827ca59ef3865dd97d
 ```
 
 | File | Primary Responsibility |
