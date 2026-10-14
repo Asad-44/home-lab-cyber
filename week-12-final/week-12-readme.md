@@ -20,66 +20,9 @@ Consolidate twelve weeks of modular engineering into a cohesive, closed-loop **S
 
 ## Architecture — Modular Design
 
-The platform uses single-responsibility modules to isolate network operations, API queries, and AI processing:
+![SOAR Pipeline Architecture](../docs/images/Week12%20Screenshots/architecture.png)
 
-<<<<<<< HEAD
-```text
-[Attacker: Kali VM]
-        │  attack traffic
-        ▼
-[Sensor: Ubuntu VM + Suricata] ── writes /var/log/suricata/fast.log
-        │  SSH streaming tail
-        ▼
-[log_collector.py]  filters IPv6 noise, forwards IPv4 alerts
-        │  POST /analyze-alert
-        ▼
-[main.py · FastAPI]  regex source-IP extraction · incident queue
-        │                              │
-        ▼                              ▼
-[threat_check.py]               [ai_analyst.py]
- AbuseIPDB API                   Gemini · MITRE ATT&CK
-        │                              │
-        └──────────────┬───────────────┘
-                       ▼
-          [app.py · Streamlit console]
-          polls GET /alerts every 3s · analyst approval
-                       │  POST /remediate
-                       ▼
-          [firewall_test.py]
-          Netmiko SSH → iptables -C / -A ... -j DROP
-                       │
-                       ▼
-          [Sensor: Ubuntu VM · kernel firewall]
-=======
-| File | Responsibility |
-|---|---|
-| `threat_check.py` | AbuseIPDB reputation lookup — isolated, reusable function |
-| `firewall_test.py` | Netmiko SSH automation — duplicate-checked `iptables` blocking |
-| `ai_analyst.py` | Gemini AI threat classification — structured MITRE ATT&CK mapping |
-| `main.py` | FastAPI orchestrator — imports all modules, exposes two endpoints |
-| `app.py` | Streamlit dashboard — the analyst-facing control surface |
-
----
-
-### System Architecture & Orchestration Pipeline
-
-![SOAR Pipeline Architecture](../docs/images/w12-workflow.png)
-
-*Figure: Complete 8-step data flow across physical and virtual zones—from raw alert ingestion in the Streamlit UI, through API enrichment and AI threat mapping, to remote firewall enforcement via Netmiko SSH.*
-
----
-
-## Key Implementation
-
-**New capability — raw alert parsing.** Unlike previous weeks (which took a pre-extracted IP as input), the orchestrator now accepts a raw, unparsed Suricata alert string and extracts the attacker's IP itself:
-```python
-def extract_ip_from_text(text: str) -> str:
-    ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
-    ips = re.findall(ip_pattern, text)
-    ...
-    # filters out the target's own IP, localhost, and broadcast addresses
->>>>>>> 16a764aae3923c6e1d0580827ca59ef3865dd97d
-```
+*Figure: Complete 10-step data flow across physical and virtual zones — from attack traffic and automated Suricata alert ingestion over SSH, through API enrichment and AI threat mapping, to analyst-approved remote firewall enforcement via Netmiko SSH.*
 
 | File | Primary Responsibility |
 |---|---|
@@ -137,34 +80,40 @@ def live_incident_feed():
 
 ## Visual Verification & Milestones
 
-### 1. Live SOAR Dashboard Feed
-The dashboard updates automatically as Suricata flags suspicious traffic, displaying the extracted IP, AbuseIPDB metrics, Gemini MITRE mapping, and the mitigation control button.
+### 1. Live SOAR Dashboard — Idle State
+The console listens for incidents before any traffic is generated.
 
-![Live SOAR dashboard feed](screenshots/week12_dashboard_live_feed.png)
-*Figure 1: Streamlit console displaying an auto-ingested incident with live threat intelligence and MITRE classification.*
+![Dashboard idle state](../docs/images/Week12%20Screenshots/01-dashboard-idle.png)
+*Figure 1: Streamlit console in its idle state, waiting for Suricata alerts.*
 
 ### 2. Multi-Process Orchestration in WSL
-The complete automated pipeline running across three coordinated terminal sessions: Uvicorn API server, Log Shipper agent, and Streamlit frontend.
+The automated pipeline running across coordinated terminal sessions: the Uvicorn API server and the Log Shipper agent.
 
-![Terminal orchestration in WSL](screenshots/week12_terminal_orchestration.png)
-*Figure 2: Terminal tabs showing the Log Shipper forwarding an alert, FastAPI processing the analysis pipeline, and the clean `200 OK` responses.*
+![Terminal orchestration in WSL](../docs/images/Week12%20Screenshots/02-pipeline-terminals.png)
+*Figure 2: The Log Shipper detecting and forwarding alerts (right) while FastAPI processes them and returns `200 OK` (left).*
 
-### 3. Remote Sensor Kernel Verification
+### 3. Auto-Ingested Incident
+The dashboard updates automatically as Suricata flags suspicious traffic, displaying the extracted IP, AbuseIPDB metrics, Gemini MITRE mapping, and firewall status.
+
+![Live SOAR dashboard feed](../docs/images/Week12%20Screenshots/03-incident-card.png)
+*Figure 3: Streamlit console displaying an auto-ingested incident with threat intelligence and MITRE classification.*
+
+### 4. Remote Sensor Kernel Verification
 Direct SSH console on the Ubuntu Server VM verifying that the automated block was applied at the Linux kernel level.
 
-![iptables verification on the target VM](screenshots/week12_iptables_verification.png)
-*Figure 3: Output of `sudo iptables -L INPUT -n -v` confirming the active DROP rule for the blocked IP.*
+![iptables verification on the target VM](../docs/images/Week12%20Screenshots/04-iptables-verification.png)
+*Figure 4: Output of `sudo iptables -L INPUT -n -v | grep DROP` confirming the active DROP rule for the blocked IP.*
 
 ---
 
 ## Milestone Summary
 
-✅ **Closed-Loop Attack and Defense Simulation:**
+**Closed-Loop Attack and Defense Simulation:**
 
-1. Launched an attack probe from the Kali VM (`192.168.100.38`) against the Ubuntu VM (`192.168.100.41`).
+1. Launched an ICMP echo probe from the Kali VM (`192.168.100.38`) against the Ubuntu VM (`192.168.100.41`).
 2. Suricata logged the activity to `fast.log`.
 3. `log_collector.py` intercepted the event and shipped it to FastAPI in near real time.
-4. FastAPI retrieved live AbuseIPDB metrics and prompted Gemini AI to classify the attack into MITRE **T1046** (Network Service Discovery) / **T1110** (Brute Force).
+4. FastAPI retrieved AbuseIPDB metrics and prompted Gemini AI to classify the activity as MITRE **T1018** (Remote System Discovery) under the Discovery tactic.
 5. The Streamlit dashboard auto-rendered the incident card via its 3-second polling fragment.
 6. Clicking **Approve Automated Block** initiated a Netmiko SSH session, validated idempotency (`iptables -C`), applied the DROP rule, and marked the incident as resolved.
 
