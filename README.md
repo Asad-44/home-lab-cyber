@@ -33,4 +33,4 @@ This repository documents my hands-on progress building an active-defense securi
 - [x] [Weeks 3–4: Suricata IDS & JSON Parsing](./week-04-alert-gen-python/)
 - [x] [Weeks 5–6: FastAPI & Threat Intel API Integration](./week-06-api-threat-intel/) 
 - [x] [Weeks 7–8: SSH Automation & Active Defense](./week-08-active_defender_api)
-- [x] Weeks 9–12: AI MITRE Mapping & Streamlit Dashboard(./week-12-final)
+- [x] [Weeks 9–12: AI MITRE Mapping & Streamlit Dashboard](./week-12-final)
